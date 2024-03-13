@@ -1,0 +1,27 @@
+﻿@using Q2.Models;
+
+<form action="/Schedule/List" method="get">
+    <input type="date" name="date"/> <input type="submit"/>
+</form>
+<h1>
+    Screening schedule on @ViewBag.Date
+</h1>
+<table style="border-collapse: collapse; width: 100%;">
+    <tr>
+        <th style="border: 1px solid black;">ID</th>
+        <th style="border: 1px solid black;">Room</th>
+        <th style="border: 1px solid black;">TimeSlot</th>
+        <th style="border: 1px solid black;">Movie</th>
+        <th style="border: 1px solid black;">Note</th>
+    </tr>
+    @foreach (Schedule item in ViewBag.Schedules)
+    {
+        <tr>
+            <td style="border: 1px solid black;">@item.Id</td>
+            <td style="border: 1px solid black;">@item.Room.Title</td>
+            <td style="border: 1px solid black;">@(item.TimeSlot != null ? item.TimeSlot.TimeString : "")</td>
+            <td style="border: 1px solid black;">@item.Movie.Title</td>
+            <td style="border: 1px solid black;">@item.Note</td>
+        </tr>
+    }
+</table>
